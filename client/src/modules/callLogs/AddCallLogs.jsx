@@ -1,8 +1,10 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import axiosInstance from "../utils/axiosInstance";
+import axiosInstance from "../../utils/axiosInstance";
+import { useNavigate } from "react-router-dom";
 
 export const AddCallLogs = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -15,6 +17,7 @@ export const AddCallLogs = () => {
       const response = await axiosInstance.post("/log-add", data);
       alert("Call logs added");
       reset();
+      navigate("/call-logs");
     } catch (error) {
       console.log("log failed", error);
       alert("log failed");
@@ -68,6 +71,15 @@ export const AddCallLogs = () => {
             />
           </div>
         </form>
+
+        <div className="mt-6 text-center">
+          <button
+            onClick={() => navigate(-1)}
+            className="px-4 py-2 border rounded hover:bg-gray-100"
+          >
+            Back
+          </button>
+        </div>
       </div>
     </div>
   );

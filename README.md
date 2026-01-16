@@ -17,6 +17,7 @@ Although backend APIs were not mandatory for the assignment, both **client and s
 - Vite
 - Axios
 - Tailwind CSS
+- Docker
 
 ### Server
 
@@ -43,6 +44,7 @@ The client application was developed **from scratch** using **React.js with Vite
 - Proper loading and empty states for better user experience
 - Clear tenant and role visibility across the application
 - Styling is done using Tailwind Css **( I have used AI for fast development al though styling was not mandatory )**
+- Containarized react-client using docker 
 
 ### Role-Based Access
 
@@ -56,6 +58,16 @@ The client application was developed **from scratch** using **React.js with Vite
 
 - Can view **call logs and leads across all organizations / tenants**
 - View-only access where applicable
+
+### Possible Improvements (Client Side)
+
+- **The following optimizations can be added if the project is extended further:**
+- Implement lazy loading for route-based component loading
+- Use useMemo to memoize large computed values (e.g., number of records)
+- Introduce centralized state management if application scale increases
+- Improve error handling and API retry mechanisms
+- Add pagination and search for large datasets
+- Use Axios interceptor to centralized auth logic
 
 ---
 
@@ -71,6 +83,7 @@ The backend APIs were developed **from scratch** to support call logs and leads 
 - Used **bcrypt** for password salting and hashing
 - Followed **MVC architecture** for clean separation of concerns
 - Used **MongoDB** as the database
+- Containarized express-server using docker 
 
 ---
 
@@ -90,6 +103,12 @@ The backend APIs were developed **from scratch** to support call logs and leads 
 
 - Node.js **version 20 or later**
 - MongoDB (local or cloud)
+- Add .env file in server directory
+```bash
+    JWT_SECRET = 123456 || secret
+    MONGO_URL= mongo-db url
+    PORT=3000
+```
 
 ### Setup Commands
 

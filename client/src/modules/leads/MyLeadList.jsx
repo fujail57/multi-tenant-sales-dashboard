@@ -3,10 +3,10 @@ import useGetApiQuery from "../../utils/useGetApiQuery";
 import { Loading } from "../../components/Loading";
 import { useAuth } from "../../authConfig/AuthContext";
 
-export const LeadList = () => {
+export const MyLeadList = () => {
   const { auth } = useAuth();
   const navigate = useNavigate();
-  const { data, loading, error } = useGetApiQuery("/leads");
+  const { data, loading, error } = useGetApiQuery("/my-leads");
 
   if (loading)
     return (

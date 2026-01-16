@@ -1,8 +1,10 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import axiosInstance from "../../utils/axiosInstance";
+import { useNavigate } from "react-router-dom";
 
 export const UserRegisterForm = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -15,7 +17,7 @@ export const UserRegisterForm = () => {
       const response = await axiosInstance.post("/user/register", data);
       alert("Signup successfully");
       reset();
-      Navigate("/");
+      navigate("/");
     } catch (error) {
       console.log("Error: ", error);
       alert("Signup failed");

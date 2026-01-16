@@ -1,0 +1,46 @@
+services:
+  # server
+  server:
+    image: fujail57/multi-tenant-sales-dashboard_server
+    container_name: server
+    ports:
+      - "3000:3000"
+    environment:
+      MONGO_URL: mongodb://mongo:27017/mtsd-db
+      JWT_SECRET: 12345
+    networks:
+      - mtsd-net
+    depends_on:
+      - mongo
+    restart: unless-stopped
+
+  # Frontend
+  client:
+    image: fujail57/multi-tenant-sales-dashboard_client
+    container_name: client
+    ports:
+      - "5173:5173"
+    networks:
+      - mtsd-net
+    depends_on:
+      - server
+    restart: unless-stopped
+
+  # Mongo Db
+  mongo:
+    image: mongo:6
+    container_name: mongo_db
+    networks:
+      - mtsd-net
+    volumes:
+      - mtsd_db:/data/db
+    restart: unless-stopped
+
+# Network
+networks:
+  mtsd-net:
+    driver: bridge
+
+# Volume
+volumes:
+  mtsd_db:

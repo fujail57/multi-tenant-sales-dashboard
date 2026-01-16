@@ -1,9 +1,10 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import axiosInstance from "../../utils/axiosInstance";
-import { Navigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 
 export const TenantLoginForm = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -16,7 +17,7 @@ export const TenantLoginForm = () => {
       const response = await axiosInstance.post("/auth/login", data);
       alert("Login Successfully");
       reset();
-      Navigate("/");
+      navigate("/");
     } catch (error) {
       console.log("Error: ", error);
       alert("Login Failed");

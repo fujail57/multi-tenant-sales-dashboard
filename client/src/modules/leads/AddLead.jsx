@@ -1,9 +1,10 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import axiosInstance from "../../utils/axiosInstance";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export const AddLeads = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -16,7 +17,7 @@ export const AddLeads = () => {
       const response = await axiosInstance.post("/lead-add", data);
       alert("New lead added Successfully");
       reset();
-      Navigate("/leads");
+      navigate("/leads");
     } catch (error) {
       console.log("lead can't add", error);
       alert("Leads can't add");
@@ -55,7 +56,6 @@ export const AddLeads = () => {
           <div>
             <select
               {...register("status")}
-              defaultValue="new"
               className="w-full border border-gray-300 rounded px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-blue-400"
             >
               <option value="new">New</option>
@@ -73,6 +73,14 @@ export const AddLeads = () => {
             />
           </div>
         </form>
+        <div className="mt-6 text-center">
+          <button
+            onClick={() => navigate(-1)}
+            className="px-4 py-2 border rounded hover:bg-gray-100"
+          >
+            Back
+          </button>
+        </div>
       </div>
     </div>
   );

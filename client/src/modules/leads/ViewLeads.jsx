@@ -35,14 +35,14 @@ export const ViewLeads = () => {
             <span className="font-medium">ID:</span> {id}
           </p>
           <p>
-            <span className="font-medium">Name:</span> {data.name}
+            <span className="font-medium">Name:</span> {data?.data?.name}
           </p>
           <p>
-            <span className="font-medium">Phone:</span> {data.phone}
+            <span className="font-medium">Phone:</span> {data?.data?.phone}
           </p>
           <p>
             <span className="font-medium">Status:</span>{" "}
-            <span className="capitalize">{data.status}</span>
+            <span className="capitalize">{data?.data?.status}</span>
           </p>
         </div>
 

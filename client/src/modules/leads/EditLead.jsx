@@ -18,6 +18,16 @@ export const EditLead = () => {
 
   const { data, loading, error } = useGetApiQuery(`/lead/${id}`);
 
+  useEffect(() => {
+    if (data) {
+      reset({
+        name: data?.data?.name,
+        phone: data?.data?.phone,
+        status: data?.data?.status,
+      });
+    }
+  }, [data, reset]);
+
   if (loading)
     return (
       <div className="flex justify-center items-center min-h-300px">
@@ -31,16 +41,6 @@ export const EditLead = () => {
         Error: {error.message}
       </div>
     );
-
-  useEffect(() => {
-    if (data) {
-      reset({
-        name: data.name,
-        phone: data.phone,
-        status: data.status,
-      });
-    }
-  }, [data, reset]);
 
   const handleUpdateFormSubmit = async (data) => {
     try {
@@ -77,6 +77,7 @@ export const EditLead = () => {
             <input
               placeholder="Enter name"
               type="text"
+              disabled
               {...register("name")}
               className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
@@ -85,7 +86,8 @@ export const EditLead = () => {
           <div>
             <input
               placeholder="Enter phone"
-              type="nunber"
+              disabled
+              type="number"
               {...register("phone")}
               className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
@@ -94,7 +96,6 @@ export const EditLead = () => {
           <div>
             <select
               {...register("status")}
-              defaultValue="new"
               className="w-full border border-gray-300 rounded px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-blue-400"
             >
               <option value="new">New</option>
@@ -112,6 +113,15 @@ export const EditLead = () => {
             />
           </div>
         </form>
+
+        <div className="mt-6 text-center">
+          <button
+            onClick={() => navigate(-1)}
+            className="px-4 py-2 border rounded hover:bg-gray-100"
+          >
+            Back
+          </button>
+        </div>
       </div>
     </div>
   );

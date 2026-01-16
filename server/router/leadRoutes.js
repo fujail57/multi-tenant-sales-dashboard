@@ -5,12 +5,14 @@ const { isAuthorisedRole } = require("../middleware/isAuthorisedRole");
 
 // :::::::::::::::::::::: ROUTES ::::::::::::::::::::::::
 
-// :::::::::::::::::::::: leads list ::::::::::::::::::::::::
+//  :::: Agent :::::::::::
 leadsRoutes.get(
   "/leads",
-  isAuthorisedRole("admin", "agent"),
+  isAuthorisedRole("agent", "admin"),
   leadsControllers.handleGetAllLeads
 );
+
+//  :::: Admin / Agent :::::::::::
 
 leadsRoutes.get(
   "/my-leads",
@@ -18,16 +20,17 @@ leadsRoutes.get(
   leadsControllers.handleGetMyLeads
 );
 
-leadsRoutes.post(
-  "/lead-add",
-  isAuthorisedRole("admin", "agent"),
-  leadsControllers.handlePostNewLead
-);
-
 leadsRoutes.get(
   "/lead/:id",
   isAuthorisedRole("admin", "agent"),
   leadsControllers.handleGetLeadById
+);
+
+//  :::: Admin :::::::::::
+leadsRoutes.post(
+  "/lead-add",
+  isAuthorisedRole("admin"),
+  leadsControllers.handlePostNewLead
 );
 
 leadsRoutes

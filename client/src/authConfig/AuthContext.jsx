@@ -14,10 +14,8 @@ export const AuthProvider = ({ children }) => {
 
   const checkAuth = async () => {
     try {
-    //   const ress = await axios.get("http://localhost:5000/auth/me", {
-    //     withCredentials: true, // ⭐ REQUIRED
-    //   });
-      const res = await axiosInstance.get("/me", data)
+      const res = await axiosInstance.get("/me");
+      console.log(res);
 
       setAuth({
         isAuth: true,

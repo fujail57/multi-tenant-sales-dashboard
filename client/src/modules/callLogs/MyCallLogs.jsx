@@ -1,12 +1,8 @@
-import { useNavigate } from "react-router-dom";
 import useGetApiQuery from "../../utils/useGetApiQuery";
 import { Loading } from "../../components/Loading";
-import { useAuth } from "../../authConfig/AuthContext";
 
-export const CallLogList = () => {
-  const { auth } = useAuth();
-  const navigate = useNavigate();
-  const { data, loading, error } = useGetApiQuery("/logs");
+export const MyCallLogs = () => {
+  const { data, loading, error } = useGetApiQuery("/my-logs");
 
   if (loading)
     return (
@@ -25,17 +21,6 @@ export const CallLogList = () => {
   return (
     <div className="flex justify-center px-4">
       <fieldset className="w-full max-w-6xl border border-gray-300 rounded-lg p-6">
-        {/* Add call logs -> only for admin */}
-
-        {auth?.role === "admin" && (
-          <button
-            onClick={() => navigate("/call-logs/add")}
-            className="px-3 py-1 mb-5 bg-green-500 text-white rounded hover:bg-green-600"
-          >
-            Add call-log
-          </button>
-        )}
-
         <legend className="px-2 text-lg font-semibold text-gray-700">
           Call Log List
         </legend>

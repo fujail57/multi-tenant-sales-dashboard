@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
-import Navbar from "./Navbar";
+import Navbar from "../components/Navbar";
 
-export const PublicLayout = () => {
+export const AdminLayout = () => {
   return (
     <div className="min-h-screen flex flex-col">
       {/* Navbar */}
@@ -13,7 +13,7 @@ export const PublicLayout = () => {
       <main className="flex-1 flex items-center justify-center px-4">
         <div className="w-full max-w-4xl text-center">
           <h2 className="text-2xl font-semibold mb-6 text-gray-800">
-            Public Layout
+            Admin Layout
           </h2>
 
           <Outlet />

@@ -1,8 +1,10 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import axiosInstance from "../../utils/axiosInstance";
+import { useNavigate } from "react-router-dom";
 
 export const TenantRegisterForm = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -15,7 +17,7 @@ export const TenantRegisterForm = () => {
       await axiosInstance.post("/auth/register", data);
       alert("Tenant registered");
       reset();
-      Navigate("/");
+      navigate("/");
     } catch (error) {
       alert("Tenant registration failed");
     }
