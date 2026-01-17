@@ -26,6 +26,7 @@ Although backend APIs were not mandatory for the assignment, both **client and s
 - MongoDB
 - JWT Authentication
 - Bcrypt
+- Cors
 - MVC Architecture
 
 ---
@@ -44,7 +45,7 @@ The client application was developed **from scratch** using **React.js with Vite
 - Proper loading and empty states for better user experience
 - Clear tenant and role visibility across the application
 - Styling is done using Tailwind Css **( I have used AI for fast development al though styling was not mandatory )**
-- Containarized react-client using docker 
+- Containarized react-client using docker
 
 ### Role-Based Access
 
@@ -83,7 +84,7 @@ The backend APIs were developed **from scratch** to support call logs and leads 
 - Used **bcrypt** for password salting and hashing
 - Followed **MVC architecture** for clean separation of concerns
 - Used **MongoDB** as the database
-- Containarized express-server using docker 
+- Containarized express-server using docker
 
 ---
 
@@ -97,13 +98,59 @@ The backend APIs were developed **from scratch** to support call logs and leads 
 
 ---
 
-## Project Setup
+## Project Setup using **Docker**
+
+- **You can find the Docker images here:**
+
+  - [Client image](https://hub.docker.com/repository/docker/fujail57/multi-tenant-sales-dashboard_client)
+  - [Server image](https://hub.docker.com/repository/docker/fujail57/multi-tenant-sales-dashboard_server)
+
+### Prerequisites
+
+- Install Docker on your machine
+- Ensure the Docker daemon is running
+
+### Setup Commands
+
+- Clone Github repository
+
+```bash
+git clone <repository-url>
+cd <repository-root>
+```
+
+- Run Docker Compose from the root directory
+
+```bash
+docker compose up
+```
+
+- **Application URLs**
+
+- Once the containers are running, the application will be available at:
+
+- Client:
+
+```bash
+http://localhost:5173/
+```
+
+- Server:
+
+```bash
+http://localhost:3000/
+```
+
+---
+
+## Project Setup locally
 
 ### Prerequisites
 
 - Node.js **version 20 or later**
 - MongoDB (local or cloud)
 - Add .env file in server directory
+
 ```bash
     JWT_SECRET = 123456 || secret
     MONGO_URL= mongo-db url
@@ -127,4 +174,4 @@ npm install
 npm run dev
 ```
 
-- Thank you
+**Thank you**

@@ -17,7 +17,10 @@ export const UserLoginForm = () => {
       await axiosInstance.post("/user/login", data);
       alert("User login successfully!");
       reset();
-      navigate("/");
+      // navigate("/");
+      setTimeout(() => {
+        window.location.href = "http://localhost:5173/leads"; // redirect here (dashboard)
+      }, 1000);
     } catch (error) {
       alert("User login failed", { message: error.message });
     }

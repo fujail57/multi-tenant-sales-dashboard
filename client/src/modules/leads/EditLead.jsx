@@ -45,7 +45,7 @@ export const EditLead = () => {
   const handleUpdateFormSubmit = async (data) => {
     try {
       const response = await axiosInstance.put(`/lead/${id}`, data);
-      console.log("Lead updated Successfully", response.data);
+      // console.log("Lead updated Successfully", response.data);
       alert("Lead updated Successfully");
       navigate("/leads");
     } catch (error) {

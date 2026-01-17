@@ -49,7 +49,7 @@ export const MyLeadList = () => {
                 <th className="border px-4 py-2">Status</th>
                 <th className="border px-4 py-2">View</th>
                 {auth?.role === "admin" && (
-                  <th className="border px-4 py-2">Edit</th>
+                  <th className="border px-4 py-2">Update</th>
                 )}
               </tr>
             </thead>
@@ -79,7 +79,7 @@ export const MyLeadList = () => {
                           onClick={() => navigate(`/lead/edit/${leads._id}`)}
                           className="px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600"
                         >
-                          Edit
+                          Update
                         </button>
                       </td>
                     )}

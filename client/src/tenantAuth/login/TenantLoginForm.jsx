@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import axiosInstance from "../../utils/axiosInstance";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const TenantLoginForm = () => {
   const navigate = useNavigate();
@@ -17,7 +17,10 @@ export const TenantLoginForm = () => {
       const response = await axiosInstance.post("/auth/login", data);
       alert("Login Successfully");
       reset();
-      navigate("/");
+      // navigate("/");
+      setTimeout(() => {
+        window.location.href = "http://localhost:5173/call-logs"; // redirect here 
+      }, 1000);
     } catch (error) {
       console.log("Error: ", error);
       alert("Login Failed");
