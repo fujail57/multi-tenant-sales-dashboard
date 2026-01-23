@@ -1,17 +1,23 @@
 import useGetApiQuery from "../../utils/useGetApiQuery";
 import { Loading } from "../../components/Loading";
+import { useQuery } from "@tanstack/react-query";
+import { getApiQuery } from "../../utils/apiQuery";
 
 export const MyCallLogs = () => {
-  const { data, loading, error } = useGetApiQuery("/my-logs");
+  // const { data, loading, error } = useGetApiQuery("/my-logs");
+  const { data, isLoading, isError, error } = useQuery({
+    queryKey: ["my-logs"],
+    queryFn: () => getApiQuery("/my-logs"),
+  });
 
-  if (loading)
+  if (isLoading)
     return (
       <div className="flex justify-center items-center min-h-300px">
         <Loading />
       </div>
     );
 
-  if (error)
+  if (isError)
     return (
       <div className="flex justify-center items-center text-red-600">
         Error: {error.message}

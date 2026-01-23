@@ -2,20 +2,27 @@ import { useNavigate } from "react-router-dom";
 import useGetApiQuery from "../../utils/useGetApiQuery";
 import { Loading } from "../../components/Loading";
 import { useAuth } from "../../authConfig/AuthContext";
+import { useQuery } from "@tanstack/react-query";
+import { getApiQuery } from "../../utils/apiQuery";
 
 export const CallLogList = () => {
   const { auth } = useAuth();
   const navigate = useNavigate();
-  const { data, loading, error } = useGetApiQuery("/logs");
+  // const { data, loading, error } = useGetApiQuery("/logs");
 
-  if (loading)
+  const {data, isLoading, isError, error} = useQuery({
+    queryKey:["logs"],
+    queryFn: ()=> getApiQuery("/logs")
+  })
+
+  if (isLoading)
     return (
       <div className="flex justify-center items-center min-h-300px">
         <Loading />
       </div>
     );
 
-  if (error)
+  if (isError)
     return (
       <div className="flex justify-center items-center text-red-600">
         Error: {error.message}

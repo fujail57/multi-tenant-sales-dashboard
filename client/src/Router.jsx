@@ -13,15 +13,11 @@ import { ViewLeads } from "./modules/leads/ViewLeads";
 import { EditLead } from "./modules/leads/EditLead";
 import { PublicLayout } from "./layout/PublicLayout";
 import { Unauthorized } from "./components/Unauthorized";
-import { RoleBasedCallLogs } from "./authConfig/RoleBasedCallLogs";
-import { RoleBasesLeads } from "./authConfig/RoleBasesLeads";
-import { LeadList } from "./modules/leads/LeadList";
-import { MyLeadList } from "./modules/leads/MyLeadList";
-import { CallLogList } from "./modules/callLogs/CallLogList";
 import { AddCallLogs } from "./modules/callLogs/AddCallLogs";
 import { AdminAgentLayout } from "./layout/AdminAgentLayout";
 import { AdminLayout } from "./layout/AdminLayout";
-import { AgentLayout } from "./layout/AgentLayout";
+import { CallLogPage } from "./modules/callLogs/CallLogPage";
+import { LeadListPage } from "./modules/leads/LeadListPage";
 
 // ::::::::::::::::::::::::::::::::: ROUTER :::::::::::::::::::::::::::::::
 
@@ -50,8 +46,8 @@ const routes = createBrowserRouter([
         element: <AdminAgentLayout />,
         children: [
           { path: "/lead/view/:id", element: <ViewLeads /> },
-          { path: "/call-logs", element: <CallLogList /> },
-          { path: "/leads", element: <LeadList /> },
+          { path: "/call-logs", element: <CallLogPage /> },
+          { path: "/leads", element: <LeadListPage /> },
         ],
       },
     ],

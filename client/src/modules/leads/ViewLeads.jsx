@@ -2,21 +2,27 @@ import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import useGetApiQuery from "../../utils/useGetApiQuery";
 import { Loading } from "../../components/Loading";
+import { useQuery } from "@tanstack/react-query";
+import { getApiQuery } from "../../utils/apiQuery";
 
 export const ViewLeads = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const { data, loading, error } = useGetApiQuery(`/lead/${id}`);
+  // const { data, loading, error } = useGetApiQuery(`/lead/${id}`);
+  const { data, isLoading, isError, error } = useQuery({
+    queryKey: ["lead", id],
+    queryFn: () => getApiQuery(`/lead/${id}`),
+  });
 
-  if (loading)
+  if (isLoading)
     return (
       <div className="flex justify-center items-center min-h-300px">
         <Loading />
       </div>
     );
 
-  if (error)
+  if (isError)
     return (
       <div className="flex justify-center text-red-600">
         Error: {error.message}

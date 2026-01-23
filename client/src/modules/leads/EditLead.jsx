@@ -4,6 +4,11 @@ import { useNavigate, useParams } from "react-router-dom";
 import axiosInstance from "../../utils/axiosInstance";
 import useGetApiQuery from "../../utils/useGetApiQuery";
 import { Loading } from "../../components/Loading";
+import { FormInput } from "../../components/form/FormInput";
+import { BackNavButton } from "../../components/button/BackNavButton";
+import { FormSubmit } from "../../components/form/FormSubmit";
+import { useQuery } from "@tanstack/react-query";
+import { getApiQuery } from "../../utils/apiQuery";
 
 export const EditLead = () => {
   const navigate = useNavigate();
@@ -16,7 +21,11 @@ export const EditLead = () => {
     formState: { isSubmitting },
   } = useForm();
 
-  const { data, loading, error } = useGetApiQuery(`/lead/${id}`);
+  // const { data, loading, error } = useGetApiQuery(`/lead/${id}`);
+  const { data, isLoading, isError, error } = useQuery({
+    queryKey: ["lead", id],
+    queryFn: () => getApiQuery(`/lead/${id}`),
+  });
 
   useEffect(() => {
     if (data) {
@@ -28,14 +37,14 @@ export const EditLead = () => {
     }
   }, [data, reset]);
 
-  if (loading)
+  if (isLoading)
     return (
       <div className="flex justify-center items-center min-h-300px">
         <Loading />
       </div>
     );
 
-  if (error)
+  if (isError)
     return (
       <div className="flex justify-center text-red-600">
         Error: {error.message}
@@ -58,12 +67,7 @@ export const EditLead = () => {
     <div className="flex justify-center items-center min-h-[60vh] px-4">
       <div className="w-full max-w-md border border-gray-300 rounded-lg p-6 shadow-sm">
         <div className="flex items-center gap-3 mb-6">
-          <button
-            onClick={() => navigate(-1)}
-            className="px-3 py-1 border rounded hover:bg-gray-100"
-          >
-            ←
-          </button>
+          <BackNavButton />
           <h2 className="text-lg font-semibold text-gray-800">
             Update Lead Status
           </h2>
@@ -74,22 +78,21 @@ export const EditLead = () => {
           className="space-y-4"
         >
           <div>
-            <input
+            <FormInput
               placeholder="Enter name"
-              type="text"
+              name="name"
+              register={register}
               disabled
-              {...register("name")}
-              className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
           </div>
 
           <div>
-            <input
+            <FormInput
               placeholder="Enter phone"
-              disabled
               type="number"
-              {...register("phone")}
-              className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              disabled
+              name="phone"
+              register={register}
             />
           </div>
 
@@ -104,24 +107,21 @@ export const EditLead = () => {
             </select>
           </div>
 
-          <div>
+          {/* <div>
             <input
               type="submit"
               disabled={isSubmitting}
               value={isSubmitting ? "Updating..." : "Update"}
               className="w-full bg-blue-500 text-white py-2 rounded font-medium hover:bg-blue-600 disabled:opacity-50 cursor-pointer"
             />
+          </div> */}
+
+          <div>
+            <FormSubmit value="Update" isSubmitting={isSubmitting} />
           </div>
         </form>
 
-        <div className="mt-6 text-center">
-          <button
-            onClick={() => navigate(-1)}
-            className="px-4 py-2 border rounded hover:bg-gray-100"
-          >
-            Back
-          </button>
-        </div>
+        <BackNavButton name="Back" />
       </div>
     </div>
   );
