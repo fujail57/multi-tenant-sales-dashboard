@@ -2,10 +2,9 @@
 
 ## Overview
 
-This project is a **Multi-Tenant Sales Dashboard** developed as part of a frontend-focused assignment.  
-The objective of the assignment is to demonstrate **application structure, modularity, role-based access control, tenancy handling, and frontend optimization awareness**.
+This project is a full-stack, multi-tenant sales dashboard built from scratch to demonstrate secure authentication, role-based access control, and tenant-aware data handling. The application supports **multiple organizations** (tenants) with clearly defined user roles and strict data isolation rules.
 
-Although backend APIs were not mandatory for the assignment, both **client and server were developed from scratch** to better showcase real-world architecture and application behavior.
+The system is designed with scalability and maintainability in mind, using modern frontend and backend technologies, clean architecture patterns, and containerization.
 
 ---
 
@@ -13,9 +12,9 @@ Although backend APIs were not mandatory for the assignment, both **client and s
 
 ### Client
 
-- React.js
-- Vite
+- React.js (Vite)
 - Axios
+- React Query (TanStack) for efficient data fetching and caching
 - Tailwind CSS
 - Docker
 
@@ -28,24 +27,26 @@ Although backend APIs were not mandatory for the assignment, both **client and s
 - Bcrypt
 - Cors
 - MVC Architecture
+- Docker
 
 ---
 
 ## Client (Frontend)
 
-The client application was developed **from scratch** using **React.js with Vite** for faster development and optimized builds.
+The frontend application is built using React with Vite to ensure fast development and optimized builds.
 
 ### Features
 
 - Implemented **Agent login and registration**
 - Implemented **Tenant (Admin) login and registration**
 - Client-side **role-based and conditional rendering**
-- Used `useEffect` hook with **Axios** to fetch data from the server
+- API communication handled via Axios
+- Optimized server state management using React Query, including caching, loading states, and error handling
 - Created a reusable and responsive **Navbar**
 - Proper loading and empty states for better user experience
 - Clear tenant and role visibility across the application
 - Styling is done using Tailwind Css **( I have used AI for fast development al though styling was not mandatory )**
-- Containarized react-client using docker
+- Containarized react-client app using docker
 
 ### Role-Based Access
 
@@ -60,21 +61,11 @@ The client application was developed **from scratch** using **React.js with Vite
 - Can view **call logs and leads across all organizations / tenants**
 - View-only access where applicable
 
-### Possible Improvements (Client Side)
-
-- **The following optimizations can be added if the project is extended further:**
-- Implement lazy loading for route-based component loading
-- Use useMemo to memoize large computed values (e.g., number of records)
-- Introduce centralized state management if application scale increases
-- Improve error handling and API retry mechanisms
-- Add pagination and search for large datasets
-- Use Axios interceptor to centralized auth logic
-
 ---
 
 ## Server (Backend)
 
-The backend APIs were developed **from scratch** to support call logs and leads management.
+The backend is built from scratch using Node.js and Express, following a clean MVC architecture.
 
 ### Features
 
@@ -94,14 +85,13 @@ The backend APIs were developed **from scratch** to support call logs and leads 
 - Admin access is strictly restricted to **tenant-specific data**
 - Agent access can view data across tenants as per requirements
 - Switching tenant updates the visible data accordingly
-- Tenancy rules are enforced at both **API and client levels**
+- Tenancy rules are enforced on both backend APIs and frontend logic
 
 ---
 
 ## Project Setup using **Docker**
 
 - **You can find the Docker images here:**
-
   - [Client image](https://hub.docker.com/repository/docker/fujail57/multi-tenant-sales-dashboard_client)
   - [Server image](https://hub.docker.com/repository/docker/fujail57/multi-tenant-sales-dashboard_server)
 
